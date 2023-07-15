@@ -1,8 +1,13 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import LoginPage from "./container/login";
+
 function App() {
   return (
-    <>
-      <h1>Emergency App</h1>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
