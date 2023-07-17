@@ -21,7 +21,7 @@ const Form = () => {
         _hover={{ bg: "#6234c7" }}
         bg="#4C20A9"
         color="white"
-        onClick={() => navigate("/dashboard")}
+        onClick={() => navigate("/overview")}
       >
         Log in
       </Button>
