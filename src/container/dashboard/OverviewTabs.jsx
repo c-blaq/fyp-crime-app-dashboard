@@ -8,10 +8,7 @@ import {
   Box,
   Heading,
   Text,
-  Flex,
 } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
-import { BsChevronRight } from "react-icons/bs";
 
 import OverviewIcon from "../../component/OverviewIcon";
 import TableContainer from "../../component/Table";
