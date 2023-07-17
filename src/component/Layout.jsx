@@ -20,9 +20,9 @@ const PageLayout = ({ children }) => {
       </Box>
       <Box
         flex="1"
-        padding="0 20px"
         marginX={"auto"}
         marginLeft="22%"
+        paddingRight="30px"
         maxWidth="1440px"
       >
         <Header />

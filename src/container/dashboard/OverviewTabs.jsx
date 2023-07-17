@@ -8,10 +8,15 @@ import {
   Box,
   Heading,
   Text,
+  Flex,
 } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
+import { BsChevronRight } from "react-icons/bs";
+
 import OverviewIcon from "../../component/OverviewIcon";
 import TableContainer from "../../component/Table";
 import TableWrapper from "../../component/Table";
+import TabTitle from "./TabTitle";
 
 const OverviewTabs = () => {
   return (
@@ -84,21 +89,15 @@ const OverviewTabs = () => {
 
       <TabPanels marginTop="40px">
         <TabPanel>
-          <Heading as="h3" fontSize="20px" marginBottom="20px">
-            Recently Viewed Reports
-          </Heading>
+          <TabTitle>Recently Viewed Reports</TabTitle>
           <TableContainer />
         </TabPanel>
         <TabPanel>
-          <Heading as="h3" fontSize="20px" marginBottom="20px">
-            Completed Reports
-          </Heading>
+          <TabTitle>Completed Reports</TabTitle>
           <TableWrapper />
         </TabPanel>
         <TabPanel>
-          <Heading as="h3" fontSize="20px" marginBottom="20px">
-            Pending Reports
-          </Heading>
+          <TabTitle>Pending Reports</TabTitle>
           <TableWrapper />
         </TabPanel>
       </TabPanels>
