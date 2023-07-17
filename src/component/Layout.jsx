@@ -1,5 +1,6 @@
 import { Box, Flex } from "@chakra-ui/react";
 import Sidebar from "./Sidebar";
+import Header from "./Header";
 
 const PageLayout = ({ children }) => {
   return (
@@ -17,7 +18,14 @@ const PageLayout = ({ children }) => {
       >
         <Sidebar />
       </Box>
-      <Box flex="1" marginX={"auto"} marginLeft="20%" maxWidth="1440px">
+      <Box
+        flex="1"
+        padding="0 20px"
+        marginX={"auto"}
+        marginLeft="22%"
+        maxWidth="1440px"
+      >
+        <Header />
         {children}
       </Box>
     </Flex>
