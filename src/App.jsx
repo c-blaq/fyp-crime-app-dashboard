@@ -5,6 +5,7 @@ import Dashboard from "./container/dashboard";
 import Reports from "./container/reports ";
 import Notifications from "./container/notifications";
 import NewAdmin from "./container/newAdmin";
+import Map from "./container/map";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/reports" element={<Reports />} />
         <Route path="/notification" element={<Notifications />} />
         <Route path="/add-admin" element={<NewAdmin />} />
+        <Route path="/map" element={<Map />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

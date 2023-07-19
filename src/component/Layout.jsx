@@ -4,27 +4,18 @@ import Header from "./Header";
 
 const PageLayout = ({ children }) => {
   return (
-    <Flex minH="100vh" gap="4">
+    <Flex height="100vh" position="relative">
       <Box
         bg="#F7F7F7"
         paddingX="16px"
         paddingY="20px"
         width="20%"
-        position="fixed"
         maxW="256px"
-        top="0"
-        left="0"
-        bottom="0"
+        h="full"
       >
         <Sidebar />
       </Box>
-      <Box
-        flex="1"
-        marginX={"auto"}
-        marginLeft="22%"
-        paddingRight="30px"
-        maxWidth="1440px"
-      >
+      <Box flex="1" h="full" minW={0} overflowY="auto" position="relative">
         <Header />
         {children}
       </Box>

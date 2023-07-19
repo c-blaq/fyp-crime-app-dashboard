@@ -19,7 +19,7 @@ import ProfileDropdown from "./ProfileDropdown";
 
 const Header = () => {
   return (
-    <header style={{ padding: "40px 0 20px" }}>
+    <header style={{ padding: "40px 0 20px", position: "relative" }}>
       <Flex align="center" justify="end" gap="16px">
         <Link to="/notification">
           <MdOutlineNotificationsNone fontSize="24px" />
