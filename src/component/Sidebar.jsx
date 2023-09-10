@@ -1,4 +1,4 @@
-import { Box, Flex, Heading } from "@chakra-ui/react";
+import { Flex, Heading } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
 const Sidebar = () => {
@@ -17,8 +17,8 @@ const Sidebar = () => {
 
   return (
     <Flex gap="20px" direction="column">
-      <Heading as="h2" marginBottom="40px">
-        ALert
+      <Heading as="h2" fontSize={{ base: "24px", lg: "32px" }} marginTop="40px">
+        ResQue
       </Heading>
       {NAV.map(({ title, pathname }) => (
         <Link
