@@ -7,10 +7,12 @@ import {
   Text,
   Tooltip,
   TableContainer,
-  Box,
 } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 
 const TableWrapper = () => {
+  const navigate = useNavigate();
+
   return (
     <TableContainer overflowX="auto" maxW="full" className="hide-scrollbar">
       <Table>
@@ -25,12 +27,17 @@ const TableWrapper = () => {
         </Thead>
 
         <Tbody gap="20px !important">
-          <Tr alignItems="center" marginBottom="20px !important">
+          <Tr
+            alignItems="center"
+            cursor="pointer"
+            marginBottom="20px !important"
+            onClick={() => navigate("/reports/map")}
+          >
             <Td>
               <Tooltip
                 width="80%"
                 mx="10px"
-                placement="auto"
+                placement="bottom"
                 label="Let someone know your destination, your route, and when you
                 expect to arrive."
               >
@@ -67,12 +74,17 @@ const TableWrapper = () => {
               </Text>
             </Td>
           </Tr>
-          <Tr alignItems="center" marginBottom="20px !important">
+          <Tr
+            alignItems="center"
+            cursor="pointer"
+            marginBottom="20px !important"
+            onClick={() => navigate("/reports/map")}
+          >
             <Td maxW="350px">
               <Tooltip
                 width="80%"
                 mx="10px"
-                placement="auto"
+                placement="bottom"
                 label="Let someone know your destination, your route, and when you
                 expect to arrive."
               >
@@ -109,12 +121,17 @@ const TableWrapper = () => {
               </Text>
             </Td>
           </Tr>
-          <Tr alignItems="center" marginBottom="20px !important">
+          <Tr
+            alignItems="center"
+            cursor="pointer"
+            marginBottom="20px !important"
+            onClick={() => navigate("/reports/map")}
+          >
             <Td maxW="350px">
               <Tooltip
                 width="80%"
                 mx="10px"
-                placement="auto"
+                placement="bottom"
                 label="Let someone know your destination, your route, and when you
                 expect to arrive."
               >
@@ -151,12 +168,17 @@ const TableWrapper = () => {
               </Text>
             </Td>
           </Tr>
-          <Tr alignItems="center" marginBottom="20px !important">
+          <Tr
+            alignItems="center"
+            cursor="pointer"
+            marginBottom="20px !important"
+            onClick={() => navigate("/reports/map")}
+          >
             <Td maxW="350px">
               <Tooltip
                 width="80%"
                 mx="10px"
-                placement="auto"
+                placement="bottom"
                 label="Let someone know your destination, your route, and when you
                 expect to arrive."
               >
@@ -193,12 +215,17 @@ const TableWrapper = () => {
               </Text>
             </Td>
           </Tr>
-          <Tr alignItems="center" marginBottom="20px !important">
+          <Tr
+            alignItems="center"
+            cursor="pointer"
+            marginBottom="20px !important"
+            onClick={() => navigate("/reports/map")}
+          >
             <Td maxW="350px">
               <Tooltip
                 width="80%"
                 mx="10px"
-                placement="auto"
+                placement="bottom"
                 label="Let someone know your destination, your route, and when you
                 expect to arrive."
               >
@@ -235,12 +262,17 @@ const TableWrapper = () => {
               </Text>
             </Td>
           </Tr>
-          <Tr alignItems="center" marginBottom="20px !important">
+          <Tr
+            alignItems="center"
+            cursor="pointer"
+            marginBottom="20px !important"
+            onClick={() => navigate("/reports/map")}
+          >
             <Td maxW="350px">
               <Tooltip
                 width="80%"
                 mx="10px"
-                placement="auto"
+                placement="bottom"
                 label="Let someone know your destination, your route, and when you
                 expect to arrive."
               >

@@ -16,7 +16,7 @@ function App() {
         <Route path="/reports" element={<Reports />} />
         <Route path="/notification" element={<Notifications />} />
         <Route path="/add-admin" element={<NewAdmin />} />
-        <Route path="/map" element={<Map />} />
+        <Route path="/reports/map" element={<Map />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

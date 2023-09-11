@@ -27,25 +27,25 @@ const ReportTabs = () => {
         </Tab>
 
         <Tab _selected={{ color: "#4C20A9" }}>
-          <Text>Attended to</Text>
+          <Text w="max-content">Attended to</Text>
         </Tab>
       </TabList>
       <TabIndicator mt="-1.5px" height="3px" bg="#4C20A9" />
 
       <TabPanels marginTop="40px">
-        <TabPanel>
+        <TabPanel padding="0">
           <Heading as="h3" fontSize="20px" marginBottom="20px">
             All
           </Heading>
           <TableContainer />
         </TabPanel>
-        <TabPanel>
+        <TabPanel padding="0">
           <Heading as="h3" fontSize="20px" marginBottom="20px">
             Pending
           </Heading>
           <TableWrapper />
         </TabPanel>
-        <TabPanel>
+        <TabPanel padding="0">
           <Heading as="h3" fontSize="20px" marginBottom="20px">
             Completed
           </Heading>

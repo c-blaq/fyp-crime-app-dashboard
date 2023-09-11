@@ -12,7 +12,7 @@ const Notifications = () => {
             base: "24px",
             md: "36px",
           }}
-          marginTop="50px"
+          marginTop="24px"
           marginBottom="24px"
           color="#050505"
         >

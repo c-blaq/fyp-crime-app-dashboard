@@ -11,12 +11,25 @@ const NewAdmin = () => {
           <BsChevronLeft />
         </Link>
 
-        <Flex marginY="24px" justify="space-between">
+        <Flex marginY="24px" gap="16px" justify="space-between">
           <Box>
-            <Heading as="h2" fontSize="24px">
+            <Heading
+              as="h2"
+              fontSize={{
+                base: "18",
+                md: "24px",
+              }}
+            >
               Fathi Babayeju
             </Heading>
-            <Text color="gray.600" marginY="6px">
+            <Text
+              color="gray.600"
+              marginY="6px"
+              fontSize={{
+                base: "14px",
+                md: "16px",
+              }}
+            >
               babayejuadesina@gmail.com
             </Text>
             <Text>Administrator</Text>
@@ -26,7 +39,14 @@ const NewAdmin = () => {
 
         <Flex align="center" justify="space-between">
           <Text>Sub-admins</Text>
-          <Button>
+          <Button
+            display="flex"
+            align="center"
+            fontSize={{
+              base: "14px",
+              md: "16px",
+            }}
+          >
             <BsPlus fontSize="24px" />
             <Text>Add Admin</Text>
           </Button>
