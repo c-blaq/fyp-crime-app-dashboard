@@ -14,7 +14,10 @@ const Header = () => {
         lg: "40px",
       }}
       paddingBottom="20px"
+      paddingX="16px"
       position="relative"
+      maxW="7xl"
+      margin="auto"
     >
       <Flex align="center" justify={{ base: "space-between", lg: "end" }}>
         <Button

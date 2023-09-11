@@ -1,11 +1,11 @@
 import React from "react";
 
-const OverviewIcon = ({ fill }) => {
+const OverviewIcon = ({ fill, width, height }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="42"
-      height="48"
+      width={width || "42"}
+      height={height || "48"}
       viewBox="0 0 42 48"
       fill="none"
     >

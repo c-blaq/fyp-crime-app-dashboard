@@ -1,24 +1,26 @@
-import { Flex, Heading } from "@chakra-ui/react";
+import { Flex, Heading, Text } from "@chakra-ui/react";
 import { BsChevronRight } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
 const TabTitle = ({ children }) => {
   return (
-    <Flex justify="space-between" align="center">
-      <Heading as="h3" fontSize="20px" marginBottom="20px">
+    <Flex justify="space-between" gap="16px">
+      <Heading
+        as="h3"
+        fontSize={{
+          base: "16px",
+          md: "20px",
+        }}
+        marginBottom="20px"
+      >
         {children}
       </Heading>
       <Link to="/reports">
-        <Flex align="center" gap="2px" fontSize="14px">
-          <span
-            style={{
-              textDecoration: "underline",
-              color: "#4C20A9",
-            }}
-          >
+        <Flex align="center" gap="4px" fontSize="14px">
+          <Text color="#4C20A9" w="max-content" textDecoration="underline">
             View all reports
-          </span>
-          <BsChevronRight />
+          </Text>
+          <BsChevronRight size="14px" />
         </Flex>
       </Link>
     </Flex>
