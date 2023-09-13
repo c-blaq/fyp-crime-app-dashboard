@@ -31,6 +31,7 @@ const TableWrapper = () => {
             alignItems="center"
             cursor="pointer"
             marginBottom="20px !important"
+            _hover:bg="yellow.100"
             onClick={() => navigate("/reports/map")}
           >
             <Td>

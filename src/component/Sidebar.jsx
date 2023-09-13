@@ -1,7 +1,7 @@
 import { Box, Flex, Heading } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
-const Sidebar = () => {
+const Sidebar = ({ openSidebar }) => {
   const NAV = [
     {
       title: "Overview",
@@ -17,10 +17,23 @@ const Sidebar = () => {
 
   return (
     <Flex gap="20px" direction="column">
-      <Heading as="h2" fontSize={{ base: "24px", lg: "32px" }} marginTop="40px">
+      <Heading
+        as="h2"
+        fontSize={{ base: "24px", lg: "32px" }}
+        display={{
+          base: "none",
+          lg: "block",
+        }}
+        marginTop="40px"
+      >
         ResQue
       </Heading>
-      <Box pt="24px">
+      <Box
+        pt={{
+          base: "100px",
+          lg: "24px",
+        }}
+      >
         {NAV.map(({ title, pathname }) => (
           <Link
             to={pathname}

@@ -5,7 +5,7 @@ import { AiOutlineMenu } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import ProfileDropdown from "./ProfileDropdown";
 
-const Header = () => {
+const Header = ({ setOpenSidebar, openSidebar }) => {
   return (
     <Box
       as="header"
@@ -24,6 +24,11 @@ const Header = () => {
           display={{
             base: "block",
             lg: "none",
+          }}
+          position="relative"
+          zIndex="100"
+          onClick={() => {
+            setOpenSidebar(!openSidebar);
           }}
         >
           <AiOutlineMenu />
