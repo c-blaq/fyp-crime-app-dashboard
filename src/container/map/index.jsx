@@ -46,7 +46,7 @@ const Map = () => {
         <p>ssnnn</p>
       )}
 
-      <Box zIndex="2" position="fixed" ml="16px" maxW="736px">
+      <Box zIndex="2" position="fixed" mx="16px" maxW="736px">
         <Box bg="white" padding="4px " w="fit-content" color="black">
           <Link to="/reports">
             <BsChevronLeft size="24px" />

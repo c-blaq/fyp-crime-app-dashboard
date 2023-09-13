@@ -26,7 +26,7 @@ const Header = ({ setOpenSidebar, openSidebar }) => {
             lg: "none",
           }}
           position="relative"
-          zIndex="100"
+          zIndex="10"
           onClick={() => {
             setOpenSidebar(!openSidebar);
           }}
