@@ -3,6 +3,8 @@ import ReactDOM from "react-dom/client";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import App from "./App";
 import "./index.css";
+import QueryProvider from "./context/QueryProvider";
+import AuthProvider from "./context/AuthProvider";
 
 const theme = extendTheme({
   colors: {
@@ -24,8 +26,12 @@ const theme = extendTheme({
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <ChakraProvider theme={theme}>
-      <App />
-    </ChakraProvider>
+    <QueryProvider>
+      <AuthProvider>
+        <ChakraProvider theme={theme}>
+          <App />
+        </ChakraProvider>
+      </AuthProvider>
+    </QueryProvider>
   </React.StrictMode>
 );
