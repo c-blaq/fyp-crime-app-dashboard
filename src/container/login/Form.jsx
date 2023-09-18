@@ -1,30 +1,114 @@
-import React from "react";
-import { Box, Button, FormControl, FormLabel, Input } from "@chakra-ui/react";
+import React, { useState } from "react";
+import {
+  Box,
+  Button,
+  FormControl,
+  FormErrorMessage,
+  FormLabel,
+  Input,
+  Spinner,
+} from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import { useLoginMutation } from "../../api/auth";
+import { useToast } from "@chakra-ui/react";
+import { useAuth } from "../../context/AuthProvider";
 
 const Form = () => {
   const navigate = useNavigate();
-  const { loginAdmin } = useLoginMutation();
+  const toast = useToast();
+  const {
+    adminUserLogin,
+    userCredentials,
+    setUserCredentials,
+    isLoading,
+    tokens,
+  } = useAuth();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUserCredentials({ ...userCredentials, [name]: value });
+  };
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const user = await loginAdmin({
-      email: "root@admin.com",
-      password: "password",
-    });
-    console.log(user);
+
+    try {
+      if (userCredentials.email === "") {
+        return setUserCredentials({
+          ...userCredentials,
+          errorMessage: { email: "Email is required!" },
+        });
+      }
+
+      if (!userCredentials.email.includes("@")) {
+        return setUserCredentials({
+          ...userCredentials,
+          errorMessage: { email: "Please inlude @ in the email address!" },
+        });
+      }
+
+      if (userCredentials.password === "") {
+        return setUserCredentials({
+          ...userCredentials,
+          errorMessage: { password: "Password is required!" },
+        });
+      }
+
+      await adminUserLogin(userCredentials);
+
+      if (tokens.accessToken) {
+        navigate("/overview");
+        toast({
+          title: "Login successful!",
+          status: "success",
+          position: "top-right",
+          duration: 3000,
+        });
+      }
+    } catch (error) {
+      if (error?.response) {
+        toast({
+          title: error.response?.data.error || "Something went wrong!",
+          status: "error",
+          position: "top-right",
+          duration: 3000,
+        });
+      }
+    }
   };
 
   return (
-    <FormControl>
+    <FormControl
+      isInvalid={
+        !userCredentials.password ||
+        !userCredentials.email ||
+        !userCredentials.email.includes("@")
+      }
+    >
       <Box mb="20px">
         <FormLabel htmlFor="email">Email address</FormLabel>
-        <Input type="email" id="email" placeholder="user@gmail.com" />
+        <Input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="user@gmail.com"
+          onChange={handleChange}
+        />
+        <FormErrorMessage>
+          {userCredentials.errorMessage.email}
+        </FormErrorMessage>
       </Box>
       <Box>
         <FormLabel htmlFor="password">Password</FormLabel>
-        <Input type="password" id="password" placeholder="password" />
+        <Input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="password"
+          onChange={handleChange}
+        />
+        <FormErrorMessage>
+          {userCredentials.errorMessage.password}
+        </FormErrorMessage>
       </Box>
       <Button
         mt="48px"
@@ -34,7 +118,7 @@ const Form = () => {
         color="white"
         onClick={handleLogin}
       >
-        Log in
+        {!isLoading ? "Log in" : <Spinner size="sm" />}
       </Button>
     </FormControl>
   );

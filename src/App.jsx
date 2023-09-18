@@ -6,17 +6,53 @@ import Reports from "./container/reports ";
 import Notifications from "./container/notifications";
 import NewAdmin from "./container/newAdmin";
 import Map from "./container/map";
+import { Protected } from "./context/AuthProvider";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<LoginPage />} />
-        <Route path="/overview" element={<Dashboard />} />
-        <Route path="/reports" element={<Reports />} />
-        <Route path="/notification" element={<Notifications />} />
-        <Route path="/add-admin" element={<NewAdmin />} />
-        <Route path="/reports/map" element={<Map />} />
+        <Route
+          path="/overview"
+          element={
+            <Protected>
+              <Dashboard />
+            </Protected>
+          }
+        />
+        <Route
+          path="/reports"
+          element={
+            <Protected>
+              <Reports />
+            </Protected>
+          }
+        />
+        <Route
+          path="/notification"
+          element={
+            <Protected>
+              <Notifications />
+            </Protected>
+          }
+        />
+        <Route
+          path="/add-admin"
+          element={
+            <Protected>
+              <NewAdmin />
+            </Protected>
+          }
+        />
+        <Route
+          path="/reports/map"
+          element={
+            <Protected>
+              <Map />
+            </Protected>
+          }
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
