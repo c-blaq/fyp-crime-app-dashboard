@@ -8,7 +8,9 @@ const ProfileDropdown = ({ children }) => {
       <MenuList>
         <MenuItem>View profile</MenuItem>
         <MenuItem>
-          <Link to="/add-admin">Add admin</Link>
+          <Link to="/add-admin" style={{ display: "block", width: "100%" }}>
+            Add admin
+          </Link>
         </MenuItem>
         <MenuItem>Log out</MenuItem>
       </MenuList>
