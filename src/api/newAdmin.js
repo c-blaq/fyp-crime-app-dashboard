@@ -18,3 +18,20 @@ export const useInviteAdminMutation = () => {
     ...props,
   };
 };
+
+// verify invitation token
+export const useVerifyAdminInviteTokenMutation = () => {
+  const { mutateAsync, ...props } = useMutation({
+    mutationFn: async (token) => {
+      const { data } = await Axios.post("/admin/invitations/verify-token", {
+        token,
+      });
+      return data;
+    },
+  });
+
+  return {
+    verifyAdminInviteToken: mutateAsync,
+    ...props,
+  };
+};

@@ -58,9 +58,9 @@ const NewAdmin = () => {
         });
       }
 
-      if (error?.response.status == 401) {
-        navigate("/");
-      }
+      // if (error.response?.status == 401) {
+      //   navigate("/");
+      // }
     }
   };
 

@@ -18,4 +18,21 @@ Axios.interceptors.request.use((config) => {
   return config;
 });
 
+Axios.interceptors.response.use(undefined, async (error) => {
+  try {
+    if (error?.response.status === 401) {
+      console.log("error");
+      localStorage.removeItem("__tokens");
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 2000);
+    }
+
+    return Promise.reject(error);
+  } catch (err) {
+    console.log(err);
+    return Promise.reject(error);
+  }
+});
+
 export default Axios;
