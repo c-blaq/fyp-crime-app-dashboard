@@ -7,6 +7,7 @@ import Notifications from "./container/notifications";
 import NewAdmin from "./container/newAdmin";
 import Map from "./container/map";
 import { Protected } from "./context/AuthProvider";
+import AdminSignup from "./container/newAdmin/adminSignup";
 
 function App() {
   return (
@@ -42,6 +43,14 @@ function App() {
           element={
             <Protected>
               <NewAdmin />
+            </Protected>
+          }
+        />
+        <Route
+          path="/invitation/:invitationToken"
+          element={
+            <Protected>
+              <AdminSignup />
             </Protected>
           }
         />

@@ -19,11 +19,12 @@ import {
   useToast,
   Spinner,
 } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useInviteAdminMutation } from "../../api/newAdmin";
 
 const NewAdmin = () => {
+  const navigate = useNavigate();
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { inviteAdmin, isLoading } = useInviteAdminMutation();
@@ -37,7 +38,6 @@ const NewAdmin = () => {
   const handleInviteAdmin = async (data) => {
     try {
       const response = await inviteAdmin(data);
-      console.log(response);
 
       if (response) {
         toast({
@@ -56,6 +56,10 @@ const NewAdmin = () => {
           position: "top",
           duration: 3000,
         });
+      }
+
+      if (error?.response.status == 401) {
+        navigate("/");
       }
     }
   };

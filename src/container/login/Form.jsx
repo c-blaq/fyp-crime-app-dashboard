@@ -15,13 +15,8 @@ import { useAuth } from "../../context/AuthProvider";
 const Form = () => {
   const navigate = useNavigate();
   const toast = useToast();
-  const {
-    adminUserLogin,
-    userCredentials,
-    setUserCredentials,
-    isLoading,
-    tokens,
-  } = useAuth();
+  const { adminUserLogin, userCredentials, setUserCredentials, isLoading } =
+    useAuth();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -54,16 +49,14 @@ const Form = () => {
       }
 
       await adminUserLogin(userCredentials);
+      navigate("/overview");
 
-      if (tokens.accessToken) {
-        navigate("/overview");
-        toast({
-          title: "Login successful!",
-          status: "success",
-          position: "top-right",
-          duration: 3000,
-        });
-      }
+      toast({
+        title: "Login successful!",
+        status: "success",
+        position: "top-right",
+        duration: 3000,
+      });
     } catch (error) {
       if (error?.response) {
         toast({
@@ -114,9 +107,11 @@ const Form = () => {
         mt="48px"
         w="full"
         _hover={{ bg: "#6234c7" }}
+        _disabled={{ cursor: "wait" }}
         bg="#4C20A9"
         color="white"
         onClick={handleLogin}
+        disabled={isLoading}
       >
         {!isLoading ? "Log in" : <Spinner size="sm" />}
       </Button>

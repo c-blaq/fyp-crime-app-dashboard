@@ -51,7 +51,7 @@ export const Protected = ({ children }) => {
   const { tokens } = useAuth();
 
   useEffect(() => {
-    if (!tokens) {
+    if (!tokens?.accessToken) {
       navigate("/");
     }
   }, [tokens]);
