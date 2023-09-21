@@ -24,8 +24,12 @@ const AdminSignup = () => {
   } = useForm();
   const param = useParams();
   const [adminCredentials, setAdminCredentials] = useState(null);
-  const { verifyAdminInviteToken } = useVerifyAdminInviteTokenMutation();
-  const { createAdminProfile } = useCreateAdminProfileMutation();
+  const { verifyAdminInviteToken, isLoading: verifyingToken } =
+    useVerifyAdminInviteTokenMutation();
+  const { createAdminProfile, isLoading: creatingProfile } =
+    useCreateAdminProfileMutation();
+
+  console.log(adminCredentials && adminCredentials);
 
   useEffect(() => {
     const verifyToken = async () => {
@@ -78,85 +82,91 @@ const AdminSignup = () => {
 
   return (
     <div>
-      <Heading
-        textAlign="center"
-        py="5"
-        fontSize={{
-          base: "2xl",
-          md: "4xl",
-        }}
-      >
-        <Link to="/">ResQue</Link>
-      </Heading>
-      <FormControl
-        px="5"
-        py="10"
-        width={{
-          base: "100%",
-          md: "50%",
-          lg: "30%",
-        }}
-        maxW="500px"
-        mx="auto"
-        my="auto"
-        boxShadow={{
-          base: "none",
-          sm: "xs",
-          md: "md",
-        }}
-      >
-        <Heading
-          as="h2"
-          fontSize={{
-            base: "xl",
-            md: "2xl",
-          }}
-          textAlign="center"
-          mb="10"
-        >
-          Create admin profile
-        </Heading>
-        <form onSubmit={handleSubmit(handleCreateAdmin)}>
-          <Input
-            type="text"
-            placeholder="First Name"
-            mb="4"
-            {...register("firstName")}
-          />
-
-          <Input
-            type="text"
-            placeholder="Last Name"
-            mb="4"
-            {...register("lastName")}
-          />
-
-          <Input
-            type="email"
-            placeholder="Email"
-            mb="4"
-            {...register("email")}
-          />
-
-          <Input
-            type="password"
-            placeholder="Password"
-            mb="4"
-            {...register("password")}
-          />
-
-          <Button
-            type="submit"
-            variant="solid"
-            colorScheme="blue"
-            display="block"
-            ml="auto"
-            mt="4"
+      {verifyingToken ? (
+        <Spinner size="lg" />
+      ) : (
+        <>
+          <Heading
+            textAlign="center"
+            py="5"
+            fontSize={{
+              base: "2xl",
+              md: "4xl",
+            }}
           >
-            {true ? "Sign up" : <Spinner size="xs" />}
-          </Button>
-        </form>
-      </FormControl>
+            <Link to="/">ResQue</Link>
+          </Heading>
+          <FormControl
+            px="5"
+            py="10"
+            width={{
+              base: "100%",
+              md: "50%",
+              lg: "30%",
+            }}
+            maxW="500px"
+            mx="auto"
+            my="auto"
+            boxShadow={{
+              base: "none",
+              sm: "xs",
+              md: "md",
+            }}
+          >
+            <Heading
+              as="h2"
+              fontSize={{
+                base: "xl",
+                md: "2xl",
+              }}
+              textAlign="center"
+              mb="10"
+            >
+              Create admin profile
+            </Heading>
+            <form onSubmit={handleSubmit(handleCreateAdmin)}>
+              <Input
+                type="text"
+                placeholder="First Name"
+                mb="4"
+                {...register("firstName")}
+              />
+
+              <Input
+                type="text"
+                placeholder="Last Name"
+                mb="4"
+                {...register("lastName")}
+              />
+
+              <Input
+                type="email"
+                placeholder="Email"
+                mb="4"
+                {...register("email")}
+              />
+
+              <Input
+                type="password"
+                placeholder="Password"
+                mb="4"
+                {...register("password")}
+              />
+
+              <Button
+                type="submit"
+                variant="solid"
+                colorScheme="blue"
+                display="block"
+                ml="auto"
+                mt="4"
+              >
+                {!creatingProfile ? "Sign up" : <Spinner size="xs" />}
+              </Button>
+            </form>
+          </FormControl>
+        </>
+      )}
     </div>
   );
 };
