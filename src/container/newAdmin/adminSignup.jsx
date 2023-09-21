@@ -32,7 +32,9 @@ const AdminSignup = () => {
       try {
         const response = await verifyAdminInviteToken(param?.invitationToken);
         setAdminCredentials(response?.invitation);
+        console.log("response", response);
       } catch (error) {
+        console.log("err", error);
         if (error.response?.status === 400) {
           toast({
             title: error?.response.data.error,
