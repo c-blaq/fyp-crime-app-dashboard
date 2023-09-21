@@ -29,14 +29,14 @@ const AdminSignup = () => {
   const { createAdminProfile, isLoading: creatingProfile } =
     useCreateAdminProfileMutation();
 
-  console.log(adminCredentials && adminCredentials);
+  console.log("creddd", adminCredentials);
 
   useEffect(() => {
-    const verifyToken = async () => {
+    return async () => {
       try {
         const response = await verifyAdminInviteToken(param?.invitationToken);
         setAdminCredentials(response?.invitation);
-        console.log("response", response);
+        console.log("creddd22", response);
       } catch (error) {
         console.log("err", error);
         if (error.response?.status === 400) {
@@ -50,8 +50,7 @@ const AdminSignup = () => {
         }
       }
     };
-    return verifyToken;
-  }, [param?.invitationToken]);
+  }, []);
 
   const handleCreateAdmin = async (data) => {
     try {
