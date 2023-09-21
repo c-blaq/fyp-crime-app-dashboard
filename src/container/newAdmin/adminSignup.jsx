@@ -29,28 +29,30 @@ const AdminSignup = () => {
   const { createAdminProfile, isLoading: creatingProfile } =
     useCreateAdminProfileMutation();
 
-  console.log("creddd", adminCredentials);
+  console.log("credd", adminCredentials);
 
-  useEffect(() => {
-    return async () => {
-      try {
-        const response = await verifyAdminInviteToken(param?.invitationToken);
-        setAdminCredentials(response?.invitation);
-        console.log("creddd22", response);
-      } catch (error) {
-        console.log("err", error);
-        if (error.response?.status === 400) {
-          toast({
-            title: error?.response.data.error,
-            status: "error",
-            duration: 3000,
-            position: "top-right",
-          });
-          navigate("/");
-        }
+  const verifyToken = async () => {
+    try {
+      const response = await verifyAdminInviteToken(param?.invitationToken);
+      setAdminCredentials(response?.invitation);
+
+      console.log("cred22", response);
+    } catch (error) {
+      console.log("err", error);
+      if (error.response?.status === 400) {
+        toast({
+          title: error?.response.data.error,
+          status: "error",
+          duration: 3000,
+          position: "top-right",
+        });
+        navigate("/");
       }
-    };
-  }, []);
+    }
+  };
+  useEffect(() => {
+    verifyToken();
+  }, [param?.invitationToken]);
 
   const handleCreateAdmin = async (data) => {
     try {
