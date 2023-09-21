@@ -21,13 +21,16 @@ import {
 } from "@chakra-ui/react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useInviteAdminMutation } from "../../api/newAdmin";
+import {
+  useInviteAdminMutation,
+  useGetAdminProfileQuery,
+} from "../../api/admin";
 
 const NewAdmin = () => {
-  const navigate = useNavigate();
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { inviteAdmin, isLoading } = useInviteAdminMutation();
+  const { adminProfile } = useGetAdminProfileQuery();
 
   const {
     register,
@@ -57,10 +60,6 @@ const NewAdmin = () => {
           duration: 3000,
         });
       }
-
-      // if (error.response?.status == 401) {
-      //   navigate("/");
-      // }
     }
   };
 
@@ -80,19 +79,19 @@ const NewAdmin = () => {
                 md: "24px",
               }}
             >
-              Fathi Babayeju
+              {adminProfile?.profile.firstName} {adminProfile?.profile.lastName}
             </Heading>
             <Text
-              color="gray.600"
-              marginY="6px"
+              color="gray.700"
+              marginY="2px"
               fontSize={{
                 base: "14px",
                 md: "16px",
               }}
             >
-              babayejuadesina@gmail.com
+              {adminProfile?.email}
             </Text>
-            <Text>Administrator</Text>
+            <Text color="gray.600">{adminProfile?.role}</Text>
           </Box>
           <Button variant="unstyled">Log out</Button>
         </Flex>

@@ -1,5 +1,22 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import Axios from "../lib/axios";
+
+// get admin profile
+export const useGetAdminProfileQuery = () => {
+  const { data, ...props } = useQuery({
+    queryKey: ["/admin/account/me"],
+    queryFn: async () => {
+      const { data } = await Axios.get("/admin/account/me");
+      return data;
+    },
+    staletime: Infinity,
+  });
+
+  return {
+    adminProfile: data?.admin,
+    ...props,
+  };
+};
 
 // invite new admin
 export const useInviteAdminMutation = () => {
