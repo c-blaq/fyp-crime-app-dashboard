@@ -46,14 +46,7 @@ function App() {
             </Protected>
           }
         />
-        <Route
-          path="/invitation/:invitationToken"
-          element={
-            <Protected>
-              <AdminSignup />
-            </Protected>
-          }
-        />
+        <Route path="/invitation/:invitationToken" element={<AdminSignup />} />
         <Route
           path="/reports/map"
           element={

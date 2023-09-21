@@ -11,11 +11,7 @@ const Axios = axios.create({
 Axios.interceptors.request.use((config) => {
   const TOKENS = JSON.parse(localStorage.getItem("__tokens"));
 
-  if (window.location.pathname.includes("/invitation")) {
-    return;
-  }
-
-  if (TOKENS) {
+  if (TOKENS && !window.location.pathname.includes("/invitation")) {
     config.headers.Authorization = `Bearer ${TOKENS.accessToken}`;
   }
 
