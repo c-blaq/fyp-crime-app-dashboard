@@ -9,41 +9,70 @@ import {
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { useVerifyAdminInviteTokenMutation } from "../../api/newAdmin";
+import {
+  useCreateAdminProfileMutation,
+  useVerifyAdminInviteTokenMutation,
+} from "../../api/admin";
 
 const AdminSignup = () => {
   const toast = useToast();
   const navigate = useNavigate();
-  const [adminCredentials, setAdminCredentials] = useState(null);
-  const { verifyAdminInviteToken } = useVerifyAdminInviteTokenMutation();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
   const param = useParams();
+  const [adminCredentials, setAdminCredentials] = useState(null);
+  const { verifyAdminInviteToken } = useVerifyAdminInviteTokenMutation();
+  const { createAdminProfile } = useCreateAdminProfileMutation();
 
-  console.log("cred", adminCredentials);
   useEffect(() => {
     const verifyToken = async () => {
       try {
         const response = await verifyAdminInviteToken(param?.invitationToken);
         setAdminCredentials(response?.invitation);
       } catch (error) {
-        if (error?.response) {
+        if (error.response?.status === 400) {
           toast({
             title: error?.response.data.error,
             status: "error",
             duration: 3000,
             position: "top-right",
           });
+          navigate("/");
         }
-
-        navigate("/");
       }
     };
     return verifyToken;
   }, [param?.invitationToken]);
+
+  const handleCreateAdmin = async (data) => {
+    try {
+      await createAdminProfile({
+        ...data,
+        invitationToken: adminCredentials?.token,
+        role: adminCredentials?.role,
+      });
+
+      toast({
+        title: "Admin created successfully!",
+        status: "success",
+        position: "top",
+        duration: 3000,
+      });
+      navigate("/");
+    } catch (error) {
+      if (error?.response) {
+        toast({
+          title: error?.response.data.error,
+          status: "error",
+          position: "top",
+          duration: 3000,
+        });
+      }
+    }
+  };
 
   return (
     <div>
@@ -85,7 +114,7 @@ const AdminSignup = () => {
         >
           Create admin profile
         </Heading>
-        <form>
+        <form onSubmit={handleSubmit(handleCreateAdmin)}>
           <Input
             type="text"
             placeholder="First Name"

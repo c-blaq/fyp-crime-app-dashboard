@@ -35,3 +35,21 @@ export const useVerifyAdminInviteTokenMutation = () => {
     ...props,
   };
 };
+
+// create new admin profile
+export const useCreateAdminProfileMutation = () => {
+  const { mutateAsync, ...props } = useMutation({
+    mutationFn: async (body) => {
+      const { data } = await Axios.post(
+        "/admin/invitations/create-account",
+        body
+      );
+      return data;
+    },
+  });
+
+  return {
+    createAdminProfile: mutateAsync,
+    ...props,
+  };
+};
